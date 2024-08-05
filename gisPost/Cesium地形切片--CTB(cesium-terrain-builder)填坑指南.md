@@ -1,5 +1,7 @@
 # Cesium地形切片--CTB(cesium-terrain-builder)填坑指南
 
+## 前言
+
 最近公司要求制作全中国的Cesium地形数据，于是开始了一通尝试：
 
 [cesiumlab](http://www.cesiumlab.com/)是一个好用的工具，图形界面操作简单。但是我处理的DEM数据（ASTER Global Digital Elevation Model V003，下载地址：[Earthdata](https://search.earthdata.nasa.gov/search)）上千张，cesiumlab显示要处理近七天，并且会输出几百G的结果，后续数据发布还得各种拷贝十分麻烦，不得不放弃这个方案。（之前公司省级范围的数据就采用的cesiumlab）
