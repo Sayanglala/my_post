@@ -3,20 +3,26 @@
 # geoserver自动发布矢量数据（shapfile）
 
 ## 前言
+
 最近研究了geoserver rust api，官方文档比较简单、不详细。本文讲述了使用geoserver rust api实现官方文档网页发布shapfile数据的python代码实现。其中，有仓库geoserver-rust实现了大量geoserver的rust api，本文使用并借鉴该库。
 
-### geoserver版本：
+### geoserver版本
+
 ![about](../image/geoserver自动发布矢量数据/版本号.webp)
 
 ### 其他
+
 [官方手册](https://www.osgeo.cn/geoserver-user-manual/index.html) ｜ [python geoserver-rust库](https://github.com/gicait/geoserver-rest)
 
 ## 步骤
+
 ### 1、生成工作区：workplace
+
 生成工作区调用的接口比较简单（.../rest/workspaces），参考接口文档，使用post创建：[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/workspaces.yaml)
 ![workplace](../image/geoserver自动发布矢量数据/生成工作区.webp)
 具体实现，调用geoserver-rust的create_workspace。自己写一个简单的实现：
-```
+
+```python
 def createWorkplace(
     url: str,
     workplaceName: str,
@@ -37,13 +43,13 @@ def createWorkplace(
 ```
 
 ### 2、生成数据集 store，自动创建图层
+
 生成store调用的接口为（.../rest/workspaces/{workspaceName}/datastores）:[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/datastores.yaml)
 ![data_store](../image/geoserver自动发布矢量数据/数据集接口.webp)
 
-
 生成store的时候，个人采用接口（/rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}）实现，此时使用rust api创建数据集后会自动创建图层，图层在矢量数据集里使用featuretype表示：
 
-```
+```python
 headers = {'Content-type': 'text/xml'}
 
 putUrl = "{0}/rest/workspaces/{1}/datastores/{2}/external.{3}?filename={2}&update=overwrite".format(
@@ -57,6 +63,7 @@ r = requests.put(
     headers = headers,
 )
 ```
+
 {method}：可以是"url"， "file"，"external"。"file"从本地源上传文件，请求的正文是文件本身。"url"从远程源上传文件，请求正文是指向要上传的文件的 URL。该 URL 必须对服务器可见。"external"使用服务器上的现有文件。请求正文是现有文件的绝对路径。
 
 geoserver-rust可使用create_shp_datastore上传本地zip压缩的shp文件创建数据集，create_datastore将服务器上数据或是WFS链接创建为数据集，create_featurestore将postgis数据库创建为数据集。后两个不会自动发布图层，需要手动调用publish_featurestore发布图层。
@@ -68,7 +75,7 @@ geoserver-rust可使用create_shp_datastore上传本地zip压缩的shp文件创�
 
 暂时没有发现geoserver-rust有相关实现的函数，只能自己写。在这里，我设置了图层名、标题、和输出坐标系并重新计算了bbox：
 
-```
+```python
 #修改图层的名字并计算bbox
 putUrl2="{}/rest/workspaces/{}/datastores/{}/featuretypes/{}?recalculate=nativebbox,latlonbbox".format(
     url, workplaceName, dataStoreName, filename
@@ -85,9 +92,10 @@ r2 = requests.put(
     headers = headers,
 )
 ```
+
 将创建数据集到设置图层参数的步骤写在一个函数里：
 
-```
+```python
 def createShpLayer(
     url: str,
     userName: str,
@@ -143,11 +151,12 @@ def createShpLayer(
 ```
 
 ### 4、创建样式并赋予图层
+
 通过前三步，数据渲染是默认的灰色。因此我们需要个性化渲染shp，此时需要用到sld。sld（SLD：Styled Layer Descriptor）是描述wms渲染图层样式的一种XML，可参考：[SLD ](https://opengeospatial.github.io/e-learning/sld/text/main.html) 
 
 一个简单要素的sld字符串生成函数：
 
-```
+```python
 def getSldXML(
     geom_type: str,
     color: str,
@@ -237,7 +246,8 @@ post的接口描述表明，post只是添加了样式的信息，还需要调用
 ![style-post](../image/geoserver自动发布矢量数据/样式post接口.webp)
 
 实现：
-```
+
+```python
 def createStyle(
     url: str,
     userName: str,
@@ -274,11 +284,13 @@ def createStyle(
     else:
         return r.status_code
 ```
+
 最后，令发布的图层使用该样式。调用接口（/rest/layers/{layerName}）：[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/layers.yaml)
 
 ![layers](../image/geoserver自动发布矢量数据/layer接口.webp)
 调用geoserver-rust的publish_style完成发布。实现：
-```
+
+```python
 headers = {"content-type": "text/xml"}
 url = "{}/rest/layers/{}:{}".format(self.service_url, workspace, layer_name)
 style_xml = (
@@ -294,8 +306,10 @@ r = self._requests(
     headers=headers,
 )
 ```
+
 最后调用：
-```
+
+```python
 if __name__ == '__main__':
 
     url = 'http://localhost:3838/geoserver'
@@ -381,6 +395,7 @@ if __name__ == '__main__':
         workspace = workplaceName
     )
 ```
+
 结果：
 ![layer](../image/geoserver自动发布矢量数据/图层预览.webp)
 ![preview](../image/geoserver自动发布矢量数据/noFlyArea.webp)

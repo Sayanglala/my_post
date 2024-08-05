@@ -8,33 +8,33 @@ OpenSceneGraph binary (OSGB)是一个开源高性能 3D 图形工具包，供视
 
 ## 模型转换
 
-浏览了网友们留下的智慧，我最终选择了使用开源库3dtiles来实现模型转换，感谢大佬开源，转换快速好用：
- [fanvanzh/3dtiles](https://github.com/fanvanzh/3dtiles)
+浏览了网友们留下的智慧，我最终选择了使用开源库3dtiles来实现模型转换，感谢大佬开源，转换快速好用：[fanvanzh/3dtiles](https://github.com/fanvanzh/3dtiles)
 
- 使用方法为：
- ```
+使用方法为：
+
+ ```text
 3dtile.exe -f osgb -i 输入的osgb文件夹路径 -o 输出的3dtiles文件夹路径
  ```
 
- 3dtiles库说明带的示例：
+3dtiles库说明带的示例：
 
- ```
- # from osgb dataset
+ ```bash
+# from osgb dataset
 3dtile.exe -f osgb -i E:\osgb_path -o E:\out_path
 3dtile.exe -f osgb -i E:\osgb_path -o E:\out_path -c "{\"offset\": 0}"
 # use pbr-texture
 3dtile.exe -f osgb -i E:\osgb_path -o E:\out_path -c "{\"pbr\": true}"
  ```
 
- 转换osgb到3dtiles的参考文章：
- [三维模型：倾斜摄影模型转为3DTiles格式 | Mars3D开发教程](http://mars3d.cn/dev/guide/data/osgb.html#_1-osgb-%E6%A0%BC%E5%BC%8F%E4%BB%8B%E7%BB%8D)
+转换osgb到3dtiles的参考文章：
+[三维模型：倾斜摄影模型转为3DTiles格式 | Mars3D开发教程](http://mars3d.cn/dev/guide/data/osgb.html#_1-osgb-%E6%A0%BC%E5%BC%8F%E4%BB%8B%E7%BB%8D)
 [转换工具汇总 - vps 之家](https://www.91vps.cc/index.php/archives/256/)
 
 ## cesium加载3dtiles
 
 cesium加载十分简单，但问题在于osgb转的3dtiles不一定正好在正确的地方。于是，我们加载3dtiles时需要对模型进行“旋转、缩放、平移”，本质上和坐标转换时的七参数转换一致：
 
-```
+```javascript
 function add3dTilesByURLAndTR(url, tx, ty, tz, rx, ry, rz, scale) {
   if (!Cesium.defined(url)) return undefined;
 
@@ -106,7 +106,8 @@ function add3dTilesByURLAndTR(url, tx, ty, tz, rx, ry, rz, scale) {
 ```
 
 然后调用：
-```
+
+```javascript
 async function addOne3DTiles() {
   const tileset1 = await add3dTilesByURLAndTR(
     "http://xxx/yyy/zzz/....../tileset.json",
@@ -138,3 +139,7 @@ async function addOne3DTiles() {
   });
 }
 ```
+
+---
+
+最新的cesium版本取消了readyPromise，当前cesium的示例已将readyPromise改为使用await。具体请见：[cesium community answer](https://community.cesium.com/t/cesiumjs-ready-promise-deprecation-api-changes/22469)
