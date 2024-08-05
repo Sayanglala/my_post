@@ -1,3 +1,5 @@
+![picture](../image/obs转3dtiles/sdtiles截图.png)
+
 # OSBG转3dTiles，并使用cesium加载3dtiles
 
 OpenSceneGraph binary (OSGB)是一个开源高性能 3D 图形工具包，供视觉模拟、游戏、虚拟现实、科学可视化和建模等领域的应用程序开发人员使用。但是，webgis使用最广泛的cesium主要支持的3d模型还是3dtiles。
@@ -26,7 +28,6 @@ OpenSceneGraph binary (OSGB)是一个开源高性能 3D 图形工具包，供视
 
  转换osgb到3dtiles的参考文章：
  [三维模型：倾斜摄影模型转为3DTiles格式 | Mars3D开发教程](http://mars3d.cn/dev/guide/data/osgb.html#_1-osgb-%E6%A0%BC%E5%BC%8F%E4%BB%8B%E7%BB%8D)
-
 [转换工具汇总 - vps 之家](https://www.91vps.cc/index.php/archives/256/)
 
 ## cesium加载3dtiles
