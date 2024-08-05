@@ -1,6 +1,6 @@
-![将geojson自动发布](../image/geoserver自动发布矢量数据/全国禁飞区.png "全国禁飞区图")
-
 # geoserver自动发布矢量数据（shapfile）
+
+![将geojson自动发布](../image/geoserver自动发布矢量数据/全国禁飞区.png "全国禁飞区图")
 
 ## 前言
 
@@ -69,6 +69,7 @@ r = requests.put(
 geoserver-rust可使用create_shp_datastore上传本地zip压缩的shp文件创建数据集，create_datastore将服务器上数据或是WFS链接创建为数据集，create_featurestore将postgis数据库创建为数据集。后两个不会自动发布图层，需要手动调用publish_featurestore发布图层。
 
 ### 3、设置图层参数
+
 使用rust api创建成功后需要重新设置对应图层的参数，此时默认图层名为创建store的shp文件名。采用的接口为：/rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}。该接口除了设置参数，还有通过键值对recalculate=[string]的计算图层数据源bbox的范围。[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/featuretypes.yaml)
 
 ![featureType](../image/geoserver自动发布矢量数据/图层参数.webp)
@@ -152,7 +153,7 @@ def createShpLayer(
 
 ### 4、创建样式并赋予图层
 
-通过前三步，数据渲染是默认的灰色。因此我们需要个性化渲染shp，此时需要用到sld。sld（SLD：Styled Layer Descriptor）是描述wms渲染图层样式的一种XML，可参考：[SLD ](https://opengeospatial.github.io/e-learning/sld/text/main.html) 
+通过前三步，数据渲染是默认的灰色。因此我们需要个性化渲染shp，此时需要用到sld。sld（SLD：Styled Layer Descriptor）是描述wms渲染图层样式的一种XML，可参考：[SLD](https://opengeospatial.github.io/e-learning/sld/text/main.html)
 
 一个简单要素的sld字符串生成函数：
 

@@ -1,6 +1,6 @@
-![main](../image/geoserver部署/main.jpeg)
-
 # Geoserver部署：使用自带jetty，简单方便
+
+![main](../image/geoserver部署/main.jpeg)
 
 ## 前言
 

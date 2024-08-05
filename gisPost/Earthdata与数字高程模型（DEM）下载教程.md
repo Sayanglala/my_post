@@ -1,5 +1,6 @@
-![main](../image/Earthdata与数字高程模型（DEM）下载教程/首页.png)
 # Earthdata与数字高程模型（DEM）下载教程
+
+![main](../image/Earthdata与数字高程模型（DEM）下载教程/首页.png)
 
 ## 1、概述
 
@@ -52,4 +53,3 @@ Earthdata下载数据相当简单，进入[Earthdata Search | Earthdata Search (
 ![插件菜单](../image/Earthdata与数字高程模型（DEM）下载教程/7.png)
 
 ![下载列表](../image/Earthdata与数字高程模型（DEM）下载教程/8.webp)
-
