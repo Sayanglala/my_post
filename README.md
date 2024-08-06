@@ -1,8 +1,10 @@
-# 个人文章记录
+# 个人帖子记录
 
 ![cut-off](./image/girl.gif)
 
 ## GIS
+
+### 地图
 
 [Earthdata与数字高程模型（DEM）下载教程](./gisPost/Earthdata与数字高程模型（DEM）下载教程.md)
 
@@ -16,3 +18,6 @@
 
 [geoserver自动发布矢量数据](./gisPost/geoserver自动发布矢量数据.md)
 
+### GDAL
+
+[Python-GDAL编译：小白实践手册](gisPost/Python-GDAL编译.md)
