@@ -40,7 +40,9 @@ MinIO 支持在上传文件时进行客户端加密，本地文件加密可以�
    --recursive：递归上传文件夹中的所有文件和子文件夹
 
    ```bash
-   mc cp --recursive myfolder myminio/mybucket/
+   mc cp --recursive myfolder myminio/mybucket/folder
+
+   [example] mc cp --recursive /data/DOM/replenish minio/hongbao/SICHUANYEYANQI_DOM
    ```
 
    MinIO 客户端会自动解密文件。
