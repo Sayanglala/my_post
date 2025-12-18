@@ -12,6 +12,8 @@
 
 [Cesium地形切片--CTB(cesium-terrain-builder)填坑指南](./gisPost/Cesium地形切片--CTB(cesium-terrain-builder)填坑指南.md)
 
+[Cesium在线web编辑器推荐](./gisPost/Cesium在线web编辑器推荐.md)
+
 [OSBG转3dTiles，并使用cesium加载3dtiles](./gisPost/OSBG转3dTiles.md)
 
 [Geoserver部署：使用自带jetty，简单方便](./gisPost/Geoserver部署.md)
