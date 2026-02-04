@@ -463,45 +463,43 @@
 }
 
 /* ============================================
-   数学公式样式
+   数学公式样式 (KaTeX)
    ============================================ */
 
-/* MathJax 公式样式 */
-mjx-container {
-  display: inline-block;
-  margin: 0.5em 0;
-}
-
-mjx-container[display="true"] {
-  display: block;
-  text-align: center;
-  margin: 1em 0;
+/* KaTeX 公式基础样式 */
+.katex {
+  font-size: 1.1em;
 }
 
 /* 行内公式 */
-.VPDoc mjx-container[jax="CHTML"][display="false"] {
-  margin: 0 0.2em;
-}
-
-/* 块级公式 */
-.VPDoc mjx-container[jax="CHTML"][display="true"] {
+.katex-display {
   margin: 1.5em 0;
   overflow-x: auto;
   overflow-y: hidden;
 }
 
 /* 公式滚动条 */
-mjx-container[jax="CHTML"][display="true"]::-webkit-scrollbar {
+.katex-display::-webkit-scrollbar {
   height: 6px;
 }
 
-mjx-container[jax="CHTML"][display="true"]::-webkit-scrollbar-thumb {
+.katex-display::-webkit-scrollbar-thumb {
   background: var(--vp-c-brand-2);
   border-radius: 3px;
 }
 
 /* 深色模式下的公式颜色 */
-.dark mjx-container {
+.dark .katex {
   color: var(--vp-c-text-1);
 }
+
+.dark .katex .mord,
+.dark .katex .mop,
+.dark .katex .mrel,
+.dark .katex .mopen,
+.dark .katex .mclose,
+.dark .katex .mpunct {
+  color: var(--vp-c-text-1);
+}
+
 
