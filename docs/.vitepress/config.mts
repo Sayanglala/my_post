@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "我的技术博客",
+  title: "SayangLaLaの博客",
   description: "分享 GIS、技术教程与阅读笔记",
   base: '/my_post/',
   
@@ -12,7 +12,7 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: 'GIS 文章', link: '/gisPost/' },
       { text: '阅读笔记', link: '/reading/' },
-      { text: '其他文章', link: '/other/' }
+      { text: '其他技术文章', link: '/other/' }
     ],
 
     sidebar: {

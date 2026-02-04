@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "SayangLaLa的技术博客"
+  name: "SayangLaLaの博客"
   text: "分享 GIS、技术与思考"
   tagline: 记录学习，分享经验
   actions:
