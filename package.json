@@ -1,0 +1,27 @@
+{
+  "name": "my_post",
+  "version": "1.0.0",
+  "description": "![cut-off](./image/girl.gif)",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayanglala/my_post.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sayanglala/my_post/issues"
+  },
+  "homepage": "https://github.com/Sayanglala/my_post#readme",
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.27"
+  }
+}
