@@ -463,43 +463,44 @@
 }
 
 /* ============================================
-   数学公式样式 (KaTeX)
+   数学公式样式 (MathJax)
    ============================================ */
 
-/* KaTeX 公式基础样式 */
-.katex {
-  font-size: 1.1em;
+/* MathJax 公式容器 */
+mjx-container {
+  display: inline-block;
+  margin: 0 0.2em;
+  overflow: visible;
+  max-width: 100%;
 }
 
-/* 行内公式 */
-.katex-display {
+mjx-container[display="true"] {
+  display: block;
+  text-align: center;
   margin: 1.5em 0;
   overflow-x: auto;
   overflow-y: hidden;
+  max-width: 100%;
 }
 
 /* 公式滚动条 */
-.katex-display::-webkit-scrollbar {
+mjx-container[display="true"]::-webkit-scrollbar {
   height: 6px;
 }
 
-.katex-display::-webkit-scrollbar-thumb {
+mjx-container[display="true"]::-webkit-scrollbar-thumb {
   background: var(--vp-c-brand-2);
   border-radius: 3px;
 }
 
 /* 深色模式下的公式颜色 */
-.dark .katex {
+.dark mjx-container {
   color: var(--vp-c-text-1);
 }
 
-.dark .katex .mord,
-.dark .katex .mop,
-.dark .katex .mrel,
-.dark .katex .mopen,
-.dark .katex .mclose,
-.dark .katex .mpunct {
+.dark mjx-container svg {
   color: var(--vp-c-text-1);
 }
+
 
 

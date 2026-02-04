@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import markdownItKatex from 'markdown-it-katex'
+import mathjax3 from 'markdown-it-mathjax3'
 
 const customElements = [
   'mjx-container',
@@ -100,13 +100,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/my_post/favicon.ico' }],
     ['meta', { name: 'theme-color', content: '#3eaf7c' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-    ['link', { 
-      rel: 'stylesheet', 
-      href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
-      integrity: 'sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV',
-      crossorigin: 'anonymous'
-    }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
   
   vue: {
@@ -160,7 +154,8 @@ export default defineConfig({
           collapsed: false,
           items: [
             { text: 'Linux 文件操作命令指南', link: '/other/fileDir' },
-            { text: '偏航角计算方法', link: '/other/heading' }
+            { text: '偏航角计算方法', link: '/other/heading' },
+            { text: '数学公式渲染测试', link: '/other/math-test' }
           ]
         }
       ]
@@ -229,7 +224,7 @@ export default defineConfig({
       dark: 'github-dark'
     },
     config: (md) => {
-      md.use(markdownItKatex)
+      md.use(mathjax3)
     }
   }
 })

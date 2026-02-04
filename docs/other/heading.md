@@ -16,36 +16,54 @@
 
 ## 计算偏航角
 
-计算从点A到点B的偏航角（方位角，bearing）可以使用以下公式。假设点A的经纬度为 \((\text{lat}_1, \text{lon}_1)\)，点B的经纬度为 \((\text{lat}_2, \text{lon}_2)\)，都以十进制度数表示。
+计算从点A到点B的偏航角（方位角，bearing）可以使用以下公式。假设点A的经纬度为 $(\text{lat}_1, \text{lon}_1)$，点B的经纬度为 $(\text{lat}_2, \text{lon}_2)$，都以十进制度数表示。
 
 使用公式：
 
-\[ \theta = \text{atan2}(\sin(\Delta \lambda) \cdot \cos(\phi_2), \cos(\phi_1) \cdot \sin(\phi_2) - \sin(\phi_1) \cdot \cos(\phi_2) \cdot \cos(\Delta \lambda)) \]
+$$
+θ = \text{atan2}(\sin(\Delta \lambda) \cdot \cos(\phi_2), \cos(\phi_1) \cdot \sin(\phi_2) - \sin(\phi_1) \cdot \cos(\phi_2) \cdot \cos(\Delta \lambda))
+$$
 
 其中：
-- \(\phi_1\) 和 \(\phi_2\) 分别是点A和点B的纬度（以弧度表示）。
-- \(\Delta \lambda = \lambda_2 - \lambda_1\)，其中 \(\lambda_1\) 和 \(\lambda_2\) 分别是点A和点B的经度（以弧度表示）。
+- $\phi_1$ 和 $\phi_2$ 分别是点A和点B的纬度（以弧度表示）。
+- $\Delta \lambda = \lambda_2 - \lambda_1$，其中 $\lambda_1$ 和 $\lambda_2$ 分别是点A和点B的经度（以弧度表示）。
 
-将结果 \(\theta\) 转换为度数并规范化为0到360度范围：
+将结果 $\theta$ 转换为度数并规范化为0到360度范围：
 
-\[ \text{bearing} = (\theta \cdot \frac{180}{\pi} + 360) \mod 360 \]
+$$
+\mathrm{bearing} = (θ \cdot \frac{180}{\pi} + 360) \mod 360
+$$
 
 下面是具体步骤和Python代码示例：
 
 1. 将经纬度从度数转换为弧度：
-\[ \phi_1 = \text{lat}_1 \cdot \frac{\pi}{180} \]
-\[ \phi_2 = \text{lat}_2 \cdot \frac{\pi}{180} \]
-\[ \lambda_1 = \text{lon}_1 \cdot \frac{\pi}{180} \]
-\[ \lambda_2 = \text{lon}_2 \cdot \frac{\pi}{180} \]
+$$
+\phi_1 = \text{lat}_1 \cdot \frac{\pi}{180}
+$$
+$$
+\phi_2 = \text{lat}_2 \cdot \frac{\pi}{180}
+$$
+$$
+\lambda_1 = \text{lon}_1 \cdot \frac{\pi}{180}
+$$
+$$
+\lambda_2 = \text{lon}_2 \cdot \frac{\pi}{180}
+$$
 
-2. 计算 \(\Delta \lambda\):
-\[ \Delta \lambda = \lambda_2 - \lambda_1 \]
+2. 计算 $\Delta \lambda$:
+$$
+\Delta \lambda = \lambda_2 - \lambda_1
+$$
 
-3. 计算 \(\theta\):
-\[ \theta = \text{atan2}(\sin(\Delta \lambda) \cdot \cos(\phi_2), \cos(\phi_1) \cdot \sin(\phi_2) - \sin(\phi_1) \cdot \cos(\phi_2) \cdot \cos(\Delta \lambda)) \]
+3. 计算 $\theta$:
+$$
+θ = \text{atan2}(\sin(\Delta \lambda) \cdot \cos(\phi_2), \cos(\phi_1) \cdot \sin(\phi_2) - \sin(\phi_1) \cdot \cos(\phi_2) \cdot \cos(\Delta \lambda))
+$$
 
-4. 将 \(\theta\) 转换为度数并规范化为0到360度范围：
-\[ \text{bearing} = (\theta \cdot \frac{180}{\pi} + 360) \mod 360 \]
+4. 将 $\theta$ 转换为度数并规范化为0到360度范围：
+$$
+\mathrm{bearing} = (θ \cdot \frac{180}{\pi} + 360) \mod 360
+$$
 
 示例Python代码：
 
@@ -83,24 +101,38 @@ print(f"The bearing from point A to point B is {bearing:.2f} degrees.")
 
 要计算从点A沿给定的偏航角（方位角）移动距离L后得到的点C的经纬度，可以使用航位推算法（dead reckoning）。以下是具体步骤和公式：
 
-1. 点A的经纬度为 \((\text{lat}_1, \text{lon}_1)\)，距离为 \(L\)（以公里为单位），偏航角为 \(\text{bearing}\)（以度为单位）。
+1. 点A的经纬度为 $(\text{lat}_1, \text{lon}_1)$，距离为 $L$（以公里为单位），偏航角为 $\text{bearing}$（以度为单位）。
 
 2. 将点A的纬度和经度从度数转换为弧度：
-\[ \phi_1 = \text{lat}_1 \cdot \frac{\pi}{180} \]
-\[ \lambda_1 = \text{lon}_1 \cdot \frac{\pi}{180} \]
+$$
+\phi_1 = \text{lat}_1 \cdot \frac{\pi}{180}
+$$
+$$
+\lambda_1 = \text{lon}_1 \cdot \frac{\pi}{180}
+$$
 
 3. 将偏航角从度数转换为弧度：
-\[ \theta = \text{bearing} \cdot \frac{\pi}{180} \]
+$$
+θ = \mathrm{bearing} \cdot \frac{\pi}{180}
+$$
 
-4. 地球的半径 \(R\) 取平均值为6371公里。
+4. 地球的半径 $R$ 取平均值为6371公里。
 
 5. 使用以下公式计算点C的纬度和经度（以弧度表示）：
-\[ \phi_2 = \arcsin(\sin(\phi_1) \cdot \cos\left(\frac{L}{R}\right) + \cos(\phi_1) \cdot \sin\left(\frac{L}{R}\right) \cdot \cos(\theta)) \]
-\[ \lambda_2 = \lambda_1 + \arctan2\left(\sin(\theta) \cdot \sin\left(\frac{L}{R}\right) \cdot \cos(\phi_1), \cos\left(\frac{L}{R}\right) - \sin(\phi_1) \cdot \sin(\phi_2)\right) \]
+$$
+\phi_2 = \arcsin(\sin(\phi_1) \cdot \cos\left(\frac{L}{R}\right) + \cos(\phi_1) \cdot \sin\left(\frac{L}{R}\right) \cdot \cos(θ))
+$$
+$$
+\lambda_2 = \lambda_1 + \arctan2\left(\sin(θ) \cdot \sin\left(\frac{L}{R}\right) \cdot \cos(\phi_1), \cos\left(\frac{L}{R}\right) - \sin(\phi_1) \cdot \sin(\phi_2)\right)
+$$
 
 6. 将点C的纬度和经度从弧度转换回度数：
-\[ \text{lat}_2 = \phi_2 \cdot \frac{180}{\pi} \]
-\[ \text{lon}_2 = \lambda_2 \cdot \frac{180}{\pi} \]
+$$
+\mathrm{lat}_2 = \phi_2 \cdot \frac{180}{\pi}
+$$
+$$
+\mathrm{lon}_2 = \lambda_2 \cdot \frac{180}{\pi}
+$$
 
 以下是示例Python代码：
 
