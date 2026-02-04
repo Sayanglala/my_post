@@ -2,8 +2,8 @@
 layout: home
 
 hero:
-  name: "SayangLaLa の 技术博客"
-  text: "分享 GIS | 技术 | 思考"
+  name: "SayangLaLa の 博客"
+  text: "分享 | 技术 | 思考"
   tagline: 记录学习旅程，分享实践经验，探索技术世界 ✨
   actions:
     - theme: brand
