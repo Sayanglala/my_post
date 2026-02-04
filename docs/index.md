@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "我的技术博客"
+  name: "SayangLaLa的技术博客"
   text: "分享 GIS、技术与思考"
   tagline: 记录学习，分享经验
   actions:
@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: 阅读笔记
       link: /reading/
+    - theme: alt
+      text: 其他技术
+      link: /other/
     - theme: alt
       text: GitHub
       link: https://github.com/Sayanglala/my_post
@@ -26,6 +29,7 @@ features:
     details: 阅读思考与感悟记录
     link: /reading/
   - icon: 🛠️
-    title: 实用工具
-    details: 各类开发工具的配置、部署与使用指南
+    title: 其他技术
+    details: Linux 命令、编程技巧等实用技术文章
+    link: /other/
 ---

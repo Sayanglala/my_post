@@ -11,7 +11,8 @@ export default defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: 'GIS 文章', link: '/gisPost/' },
-      { text: '阅读笔记', link: '/reading/' }
+      { text: '阅读笔记', link: '/reading/' },
+      { text: '其他文章', link: '/other/' }
     ],
 
     sidebar: {
@@ -40,9 +41,10 @@ export default defineConfig({
       ],
       '/other/': [
         {
-          text: '其他文章',
+          text: '其他技术文章',
           items: [
-            { text: '偏航角', link: '/other/heading' }
+            { text: '常见文件操作命令指南', link: '/other/fileDir' },
+            { text: '偏航角计算', link: '/other/heading' }
           ]
         }
       ]
