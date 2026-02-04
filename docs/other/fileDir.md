@@ -143,7 +143,7 @@ rsync -avh --progress source/ dest/ # 显示进度
 
 假设有两个文件夹结构：
 
-```
+```txt
 A/
 ├── x/y/z1
 └── q/w/e1
@@ -161,7 +161,7 @@ rsync -av --ignore-existing B/ A/
 
 执行后，文件夹 A 将包含：
 
-```
+```txt
 A/
 ├── x/y/z1  (保留A中原有文件)
 ├── x/y/z2  (从B中复制过来)
