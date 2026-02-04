@@ -37,6 +37,14 @@ export default defineConfig({
             { text: '东亚教育浪费了太多生命', link: '/reading/东亚教育浪费了太多生命' }
           ]
         }
+      ],
+      '/other/': [
+        {
+          text: '其他文章',
+          items: [
+            { text: '偏航角', link: '/other/heading' }
+          ]
+        }
       ]
     },
 
