@@ -1,6 +1,6 @@
 # OSBG转3dTiles，并使用cesium加载3dtiles
 
-![picture](../image/obs转3dtiles/sdtiles截图.png)
+![picture](/image/obs转3dtiles/sdtiles截图.png)
 
 ## 前言
 

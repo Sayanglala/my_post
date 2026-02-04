@@ -14,7 +14,7 @@
 
 通过一通gdal的环境部署后，CTB居然cmake不通过，报错："The GDAL version must be one that implements RFC 46 (GDAL/OGR unification) i.e. >= 2.0.0"，然而我是用的是gdal-3.5.0，完全不应出现该问题，于是注释Cmakelists中的check
 
-![注释check](../image/CTB/gdal编译.webp)
+![注释check](/image/CTB/gdal编译.webp)
 
 注释后通过cmake，但是出现了编译报错，原因是gdal接口不匹配，于是改用gdal-2.4.4，编译通过！make install后验证通过
 

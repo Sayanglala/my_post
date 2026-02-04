@@ -1,6 +1,6 @@
 # geoserver自动发布矢量数据（shapfile）
 
-![将geojson自动发布](../image/geoserver自动发布矢量数据/全国禁飞区.png "全国禁飞区图")
+![将geojson自动发布](/image/geoserver自动发布矢量数据/全国禁飞区.png "全国禁飞区图")
 
 ## 前言
 
@@ -8,7 +8,7 @@
 
 ### geoserver版本
 
-![about](../image/geoserver自动发布矢量数据/版本号.webp)
+![about](/image/geoserver自动发布矢量数据/版本号.webp)
 
 ### 其他
 
@@ -19,7 +19,7 @@
 ### 1、生成工作区：workplace
 
 生成工作区调用的接口比较简单（.../rest/workspaces），参考接口文档，使用post创建：[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/workspaces.yaml)
-![workplace](../image/geoserver自动发布矢量数据/生成工作区.webp)
+![workplace](/image/geoserver自动发布矢量数据/生成工作区.webp)
 具体实现，调用geoserver-rust的create_workspace。自己写一个简单的实现：
 
 ```python
@@ -45,7 +45,7 @@ def createWorkplace(
 ### 2、生成数据集 store，自动创建图层
 
 生成store调用的接口为（.../rest/workspaces/{workspaceName}/datastores）:[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/datastores.yaml)
-![data_store](../image/geoserver自动发布矢量数据/数据集接口.webp)
+![data_store](/image/geoserver自动发布矢量数据/数据集接口.webp)
 
 生成store的时候，个人采用接口（/rest/workspaces/{workspaceName}/datastores/{storeName}/{method}.{format}）实现，此时使用rust api创建数据集后会自动创建图层，图层在矢量数据集里使用featuretype表示：
 
@@ -72,7 +72,7 @@ geoserver-rust可使用create_shp_datastore上传本地zip压缩的shp文件创�
 
 使用rust api创建成功后需要重新设置对应图层的参数，此时默认图层名为创建store的shp文件名。采用的接口为：/rest/workspaces/{workspaceName}/datastores/{storeName}/featuretypes/{featureTypeName}。该接口除了设置参数，还有通过键值对recalculate=[string]的计算图层数据源bbox的范围。[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/featuretypes.yaml)
 
-![featureType](../image/geoserver自动发布矢量数据/图层参数.webp)
+![featureType](/image/geoserver自动发布矢量数据/图层参数.webp)
 
 暂时没有发现geoserver-rust有相关实现的函数，只能自己写。在这里，我设置了图层名、标题、和输出坐标系并重新计算了bbox：
 
@@ -242,9 +242,9 @@ def getSldXML(
 
 在对应工作空间创建sld，接口为（rest/workspaces/{workspace}/styles）：[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/styles.yaml)
 
-![style](../image/geoserver自动发布矢量数据/创建样式.webp)
+![style](/image/geoserver自动发布矢量数据/创建样式.webp)
 post的接口描述表明，post只是添加了样式的信息，还需要调用put上传具体样式描述：
-![style-post](../image/geoserver自动发布矢量数据/样式post接口.webp)
+![style-post](/image/geoserver自动发布矢量数据/样式post接口.webp)
 
 实现：
 
@@ -288,7 +288,7 @@ def createStyle(
 
 最后，令发布的图层使用该样式。调用接口（/rest/layers/{layerName}）：[GeoServer API Docs](https://docs.geoserver.org/latest/en/api/#1.0.0/layers.yaml)
 
-![layers](../image/geoserver自动发布矢量数据/layer接口.webp)
+![layers](/image/geoserver自动发布矢量数据/layer接口.webp)
 调用geoserver-rust的publish_style完成发布。实现：
 
 ```python
@@ -398,5 +398,5 @@ if __name__ == '__main__':
 ```
 
 结果：
-![layer](../image/geoserver自动发布矢量数据/图层预览.webp)
-![preview](../image/geoserver自动发布矢量数据/noFlyArea.webp)
+![layer](/image/geoserver自动发布矢量数据/图层预览.webp)
+![preview](/image/geoserver自动发布矢量数据/noFlyArea.webp)

@@ -10,7 +10,7 @@
 ls /usr/bin | grep python
 ```
 
-![alt text](../image/python_gdal编译/查看python版本.png)
+![alt text](/image/python_gdal编译/查看python版本.png)
 
 ### 没有python3.6便需要安装
 
@@ -70,7 +70,7 @@ cd gdal_install_packet
 wget http://download.osgeo.org/proj/proj-6.0.0.tar.gz
 ```
 
-![alt text](../image/python_gdal编译/下载proj6.png)
+![alt text](/image/python_gdal编译/下载proj6.png)
 
 - 下载gdal3.5
 
@@ -78,7 +78,7 @@ wget http://download.osgeo.org/proj/proj-6.0.0.tar.gz
 wget http://download.osgeo.org/gdal/3.5.0/gdal-3.5.0.tar.gz
 ```
 
-![alt text](../image/python_gdal编译/下载gdal3.5.png)
+![alt text](/image/python_gdal编译/下载gdal3.5.png)
 
 ## 3、安装python-GDAL
 
@@ -137,7 +137,7 @@ make install
 
 ps：GDAL配置时出现如下图，SWIG为python、proj标明yes 后续编译才能成功
 
-![alt text](../image/python_gdal编译/gdal-configure.png)
+![alt text](/image/python_gdal编译/gdal-configure.png)
 
 - 打开配置文件
 
@@ -158,7 +158,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 source ~/.bashrc
 ```
 
-![alt text](../image/python_gdal编译/最终的配置文件.png)
+![alt text](/image/python_gdal编译/最终的配置文件.png)
 
 - 查看版本确定是否成功
 
@@ -166,7 +166,7 @@ source ~/.bashrc
 gdal-config --version
 ```
 
-![alt text](../image/python_gdal编译/gdal-version.png)
+![alt text](/image/python_gdal编译/gdal-version.png)
 
 此时，使用pip3安装gdal就会获得提示如下，标明python-gdal安装成功：
-![alt text](../image/python_gdal编译/pip3安装gdal提示.png)
+![alt text](/image/python_gdal编译/pip3安装gdal提示.png)

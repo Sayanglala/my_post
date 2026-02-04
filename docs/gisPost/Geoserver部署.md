@@ -1,6 +1,6 @@
 # Geoserver部署：使用自带jetty，简单方便
 
-![main](../image/geoserver部署/main.jpeg)
+![main](/image/geoserver部署/main.jpeg)
 
 ## 前言
 
@@ -30,21 +30,21 @@ java -version
 
 打开链接点击Archive，查看历史版本：
 
-![下载首页](../image/geoserver部署/download1.webp)
+![下载首页](/image/geoserver部署/download1.webp)
 
 根据java版本选择geoserver版本：
 
-![Archive页](../image/geoserver部署/download2.webp)
+![Archive页](/image/geoserver部署/download2.webp)
 
 进入版本对应下载页，下载独立运行文件：
 
-![下载页](../image/geoserver部署/download3.webp)
+![下载页](/image/geoserver部署/download3.webp)
 
 ### 启动geoserver
 
 解压下载的文件，得到以下目录：
 
-![geoserver目录](../image/geoserver部署/menu.png)
+![geoserver目录](/image/geoserver部署/menu.png)
 
 进入bin文件夹启动服务，linux下命令行运行 startup.sh；windows下命令行运行 startup.bat。在这里就已经完成了部署，但是此时默认端口为8080，实际使用得更改端口。
 
@@ -55,7 +55,7 @@ ps：直接运行 startup.sh，服务的进程与终端在一起，关闭终端�
 修改端口
 打开根目录下的start.ini，修改端口为适合的数字
 
-![修改端口](../image/geoserver部署/renamePost.webp)
+![修改端口](/image/geoserver部署/renamePost.webp)
 
 在CentOS7中修改端口后，需要配置防火墙开启对应端口：
 
@@ -73,4 +73,4 @@ firewall-cmd --reload
 
 访问：
 
-![访问端口成功](../image/geoserver部署/success.webp)
+![访问端口成功](/image/geoserver部署/success.webp)
