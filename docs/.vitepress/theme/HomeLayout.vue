@@ -1,9 +1,18 @@
 <script setup>
 import DefaultTheme from 'vitepress/theme'
 import { useData } from 'vitepress'
+import { data as posts } from './posts.data'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
+
+// 取最新的 4 篇文章
+const recentPosts = posts.slice(0, 4)
+
+function formatDate(isoDate) {
+  const d = new Date(isoDate)
+  return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
+}
 </script>
 
 <template>
@@ -14,25 +23,13 @@ const { frontmatter } = useData()
         <div class="recent-section">
           <h2 class="section-title">最近更新</h2>
           <div class="post-grid">
-            <a href="/my_post/gisPost/地图影像（XYZ切片）下载即发布方案" class="post-card">
-              <span class="post-tag">GIS</span>
-              <h3>地图影像 XYZ 切片下载方案</h3>
-              <p>XYZ 切片的批量下载与本地发布完整方案</p>
-            </a>
-            <a href="/my_post/gisPost/Cesium地形切片--CTB(cesium-terrain-builder)填坑指南" class="post-card">
-              <span class="post-tag">GIS</span>
-              <h3>Cesium 地形切片 CTB 填坑指南</h3>
-              <p>cesium-terrain-builder 编译使用全流程踩坑记录</p>
-            </a>
-            <a href="/my_post/gisPost/geoserver自动发布矢量数据" class="post-card">
-              <span class="post-tag">GIS</span>
-              <h3>Geoserver 自动发布矢量数据</h3>
-              <p>使用脚本实现 Geoserver 矢量数据自动化发布</p>
-            </a>
-            <a href="/my_post/reading/东亚教育浪费了太多生命" class="post-card">
-              <span class="post-tag">阅读</span>
-              <h3>东亚教育浪费了太多生命</h3>
-              <p>对东亚教育体制的深度反思与讨论</p>
+            <a v-for="post in recentPosts" :key="post.url" :href="post.url" class="post-card">
+              <div class="post-meta">
+                <span class="post-tag">{{ post.tag }}</span>
+                <span class="post-date">{{ formatDate(post.date) }}</span>
+              </div>
+              <h3>{{ post.title }}</h3>
+              <p>{{ post.description }}</p>
             </a>
           </div>
         </div>
@@ -85,6 +82,13 @@ const { frontmatter } = useData()
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+.post-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
 .post-tag {
   display: inline-block;
   font-size: 11px;
@@ -95,7 +99,11 @@ const { frontmatter } = useData()
   border-radius: 999px;
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
-  margin-bottom: 10px;
+}
+
+.post-date {
+  font-size: 12px;
+  color: var(--vp-c-text-3);
 }
 
 .post-card h3 {
