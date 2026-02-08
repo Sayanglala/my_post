@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "SayangLaLa"
+  name: "SayangLaLaの记录"
   text: "GIS · 技术 · 阅读"
   tagline: 用文字记录成长，以代码丈量世界
   actions:
