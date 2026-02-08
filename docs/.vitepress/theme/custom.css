@@ -396,7 +396,8 @@ body {
 
 /* 表格 */
 .vp-doc table {
-  width: auto;
+  display: table;
+  width: 100%;
   max-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
