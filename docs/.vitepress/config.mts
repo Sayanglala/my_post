@@ -93,14 +93,17 @@ const customElements = [
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "SayangLaLa の 博客",
-  description: "分享 GIS、技术教程与阅读笔记 | 记录学习，分享经验",
+  title: "SayangLaLa",
+  description: "GIS · 技术 · 阅读 — 记录学习，分享经验",
   base: '/my_post/',
   head: [
     ['link', { rel: 'icon', href: '/my_post/favicon.ico' }],
-    ['meta', { name: 'theme-color', content: '#3eaf7c' }],
+    ['meta', { name: 'theme-color', content: '#6366f1' }],
     ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
+    ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap', rel: 'stylesheet' }]
   ],
   
   vue: {
@@ -112,20 +115,20 @@ export default defineConfig({
   },
   
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     logo: '/image/girl.gif',
+    siteTitle: 'SayangLaLa',
     
     nav: [
-      { text: '🏠 首页', link: '/' },
-      { text: '🗺️ GIS 技术', link: '/gisPost/' },
-      { text: '📚 阅读笔记', link: '/reading/' },
-      { text: '🛠️ 其他技术', link: '/other/' }
+      { text: '首页', link: '/' },
+      { text: 'GIS 技术', link: '/gisPost/' },
+      { text: '阅读笔记', link: '/reading/' },
+      { text: '技术杂记', link: '/other/' }
     ],
 
     sidebar: {
       '/gisPost/': [
         {
-          text: '🗺️ GIS 技术文章',
+          text: 'GIS 技术文章',
           collapsed: false,
           items: [
             { text: 'Cesium 地形切片 CTB 填坑指南', link: '/gisPost/Cesium地形切片--CTB(cesium-terrain-builder)填坑指南' },
@@ -141,7 +144,7 @@ export default defineConfig({
       ],
       '/reading/': [
         {
-          text: '📚 阅读笔记',
+          text: '阅读笔记',
           collapsed: false,
           items: [
             { text: '东亚教育浪费了太多生命', link: '/reading/东亚教育浪费了太多生命' }
@@ -150,7 +153,7 @@ export default defineConfig({
       ],
       '/other/': [
         {
-          text: '🛠️ 其他技术文章',
+          text: '技术杂记',
           collapsed: false,
           items: [
             { text: 'Linux 文件操作命令指南', link: '/other/fileDir' },
@@ -166,8 +169,8 @@ export default defineConfig({
     ],
     
     footer: {
-      message: '基于 VitePress 构建 | 用心记录每一次学习',
-      copyright: 'Copyright © 2024-present SayangLaLa'
+      message: 'Built with VitePress',
+      copyright: '© 2024-present SayangLaLa'
     },
 
     search: {
@@ -175,12 +178,12 @@ export default defineConfig({
       options: {
         translations: {
           button: {
-            buttonText: '搜索文档',
+            buttonText: '搜索',
             buttonAriaLabel: '搜索文档'
           },
           modal: {
-            noResultsText: '无法找到相关结果',
-            resetButtonTitle: '清除查询条件',
+            noResultsText: '未找到相关结果',
+            resetButtonTitle: '清除',
             footer: {
               selectText: '选择',
               navigateText: '切换'
@@ -192,18 +195,18 @@ export default defineConfig({
 
     outline: {
       level: [2, 3],
-      label: '📑 目录导航'
+      label: '目录'
     },
 
     docFooter: {
-      prev: '⬅️ 上一篇',
-      next: '下一篇 ➡️'
+      prev: '上一篇',
+      next: '下一篇'
     },
 
     lastUpdated: {
-      text: '🕒 最后更新于',
+      text: '最后更新',
       formatOptions: {
-        dateStyle: 'short',
+        dateStyle: 'medium',
         timeStyle: 'short'
       }
     },
@@ -220,8 +223,8 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     theme: {
-      light: 'github-light',
-      dark: 'github-dark'
+      light: 'vitesse-light',
+      dark: 'vitesse-dark'
     },
     config: (md) => {
       md.use(mathjax3)
