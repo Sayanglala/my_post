@@ -147,7 +147,13 @@ export default defineConfig({
           text: '阅读笔记',
           collapsed: false,
           items: [
-            { text: '东亚教育浪费了太多生命', link: '/reading/东亚教育浪费了太多生命' }
+            { text: '东亚教育浪费了太多生命', link: '/reading/东亚教育浪费了太多生命' },
+            { text: '中国人饱饭的日子不长', link: '/reading/中国人饱饭的日子不长' },
+            { text: '刘邦的胜利，宣告了中国人精神上的第一次劣化', link: '/reading/刘邦的胜利，宣告了中国人精神上的第一次劣化' },
+            { text: '多数人无知和少数人无耻带来灾难', link: '/reading/多数人无知和少数人无耻带来灾难' },
+            { text: '帝国财政崩溃的不可逆', link: '/reading/帝国财政崩溃的不可逆' },
+            { text: '沉默的毒——默无声息，导致了民族的衰亡', link: '/reading/沉默的毒——默无声息，导致了民族的衰亡' },
+            { text: '被“锁住”的牛马追寻自由', link: '/reading/被“锁住”的牛马追寻自由' }
           ]
         }
       ],
